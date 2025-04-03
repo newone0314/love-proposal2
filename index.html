@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            padding: 50px;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: auto;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .hidden {
+            display: none;
+            opacity: 0;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #ff4d4d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .big-question {
+            animation: pop 1s ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: float 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="slide1">
+        <h2>Hey Love ❤️</h2>
+        <p>Let's take a little journey through our story...</p>
+        <button onclick="nextSlide(1)">Next</button>
+    </div>
+    
+    <div class="container hidden" id="slide2">
+        <h2>Special Memories ✨</h2>
+        <p>From our first conversation to all the laughs we've shared, every moment with you is special.</p>
+        <button onclick="nextSlide(2)">Next</button>
+    </div>
+    
+    <div class="container hidden" id="slide3">
+        <h2>The Big Question 💖</h2>
+        <p>After all these moments, I have only one question for you...</p>
+        <h1 class="big-question">Will You Be My Girlfriend? ❤️</h1>
+        <button onclick="alert('Yay! I love you! ❤️')">YES! 😍</button>
+        <button onclick="alert('Take your time... but I hope it’s a YES! 😘')">Let me think 🤔</button>
+    </div>
+
+    <script>
+        function nextSlide(slide) {
+            document.getElementById('slide' + slide).style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById('slide' + slide).classList.add('hidden');
+                document.getElementById('slide' + (slide + 1)).classList.remove('hidden');
+                document.getElementById('slide' + (slide + 1)).style.opacity = "1";
+            }, 500);
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 4000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+</body>
+</html>
